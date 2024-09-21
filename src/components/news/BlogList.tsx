@@ -35,7 +35,7 @@ const BlogList = () => {
       .then((res) => {
         console.log(res)
         if (res.data.success) {
-          const remainingBlogs = blogs.filter((item) => item.id !== id);
+          const remainingBlogs = blogs.filter((item) => item.user_id !== id);
           setBlogs(remainingBlogs);
           toast.success(`Foydalanuvchi o'chirildi`, {
             position: "top-left",
