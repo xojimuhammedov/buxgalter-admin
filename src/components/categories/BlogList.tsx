@@ -6,16 +6,13 @@ import deleteIcon from "../../../public/assets/img/icon/action-6.png";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "react-toastify";
-import PaginationComponent from "../all-products/PaginationComponent ";
 import useGlobalContext from "@/hooks/use-context";
 import ChartPreloader from "@/preloaders/ChartPreloader";
-import NiceSelectThree from "@/utils/NiceSelectThree";
 import apiUrl from "@/utils/api";
 
 export interface DataType {
   course_id: string;
-  name_uz: string;
-  name_en: string;
+  name: string;
 }
 
 const BlogList = () => {
@@ -24,10 +21,6 @@ const BlogList = () => {
   const [searchValue, setSearchValue] = useState("");
   const [open, setOpen] = useState<boolean>(false);
   const [match, setMatch] = useState<string>("");
-  const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(10);
-  const [totalPages, setotalPages] = useState<number>(0);
-  const [currentPage, setcurrentPage] = useState<number>(0);
   const handleOpen = (id: string) => {
     setMatch(id);
     setOpen(!open);
@@ -59,50 +52,19 @@ const BlogList = () => {
       });
   };
 
-  const handleInputChange = (e: any) => {
-    setSearchValue(e.target.value);
-    axios
-      .get(
-        `${process.env.BASE_URL}/service/search-service?search=${searchValue}`
-      )
-      .then((res) => {
-        setBlogs(res.data);
-      })
-      .catch((e) => console.log(e));
-  };
-
   useEffect(() => {
     axios
       .get(`${apiUrl}/courses/main`)
       .then((res) => {
         setBlogs(res.data.data);
-        setotalPages(res.data.totalPages);
-        setcurrentPage(res.data.currentPage);
       })
       .catch((e) => console.log(e));
-  }, [page, limit]);
+  }, []);
 
   return (
     <>
-      <div className="cashier-content-area ml-[300px] mt-[30px] px-7">
+      <div className="cashier-content-area ml-[300px] mt-[90px] px-7">
         <div className="cashier-salereturns-area bg-white p-7 custom-shadow rounded-lg pt-5 mb-5">
-          <div className="cashier-table-header-search-area">
-            <div className="grid grid-cols-12 gap-x-5 mb-7 pb-0.5">
-              <div className="md:col-span-6 col-span-12">
-                <div className="cashier-table-header-search relative maxSm:mb-4">
-                  <input
-                    type="text"
-                    placeholder="Search List"
-                    value={searchValue}
-                    onChange={handleInputChange}
-                  />
-                  <span>
-                    <i className="fa-light fa-magnifying-glass"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
 
           {blogs.length ? (
             <>
@@ -110,12 +72,8 @@ const BlogList = () => {
                 <div className="cashier-salereturns-table-innerD">
                   <div className="cashier-salereturns-table-inner-wrapperD border border-solid border-grayBorder border-b-0 mb-7">
                     <div className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12">
-                      <div className="cashier-salereturns-table-dateF  ml-5">
+                      <div className="cashier-salereturns-table-dateF ml-5">
                         <h5>Kurs nomi (Uzbek)</h5>
-                      </div>
-
-                      <div className="cashier-salereturns-table-dateF  ml-5">
-                        <h5>Kurs nomi (English)</h5>
                       </div>
 
                       <div className="cashier-salereturns-table-actionF">
@@ -128,13 +86,8 @@ const BlogList = () => {
                         key={item.course_id}
                         className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12">
                         <div className="cashier-salereturns-table-dateF ml-5">
-                          <span className="capitalize"> {item.name_uz} </span>
+                          <span className="capitalize"> {item.name} </span>
                         </div>
-
-                        <div className="cashier-salereturns-table-dateF ml-5">
-                          <span className="capitalize"> {item.name_en} </span>
-                        </div>
-
                         <div className="cashier-salereturns-table-actionF">
                           <div className="dropdown">
                             <button

@@ -6,8 +6,8 @@ import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import Image from "next/image";
-import useGlobalContext from "@/hooks/use-context"; 
 import apiUrl from "@/utils/api";
+import { useRouter } from "next/navigation";
 
 
 interface FormData {
@@ -16,6 +16,7 @@ interface FormData {
 }
 const CreateServiceMain = () => {
   const [upload, setupload] = useState<boolean>(false);
+  const navigate = useRouter()
   const now = moment();
   const [loginError, setloginError] = useState<string>("");
   const {
@@ -26,7 +27,6 @@ const CreateServiceMain = () => {
   } = useForm<FormData>();
   const onSubmit: SubmitHandler<FormData> = (data) => {
     
-
     const formData = new FormData();
     
     formData.append('phone_number', data.phone_number); 
@@ -51,6 +51,7 @@ const CreateServiceMain = () => {
             });
             reset();
             setupload(false);
+            navigate.push('/news')
             break; 
           case "custom error":
             reset();

@@ -33,7 +33,6 @@ const BlogList = () => {
         header
       )
       .then((res) => {
-        console.log(res)
         if (res.data.success) {
           const remainingBlogs = blogs.filter((item) => item.user_id !== id);
           setBlogs(remainingBlogs);
@@ -70,7 +69,6 @@ const BlogList = () => {
     <>
       <div className="cashier-content-area mt-[100px] ml-[300px] px-7">
         <div className="cashier-salereturns-area bg-white p-7 custom-shadow rounded-lg pt-5 mb-5">      
-
           {blogs?.length ? (
             <>
               <div className="cashier-salereturns-table-area">
