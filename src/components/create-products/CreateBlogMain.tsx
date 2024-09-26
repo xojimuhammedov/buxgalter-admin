@@ -15,13 +15,13 @@ import Preloader from "@/sheardComponent/Preloader/Preloader";
 
 interface FormData {
   title: string;
-  description: string;
+  body: string;
+  contentplan: string;
   price: string;
-  category_id: string;
-  video:string;
-  cover: string;
-  images: [];
-  is_active:boolean;
+  course_id: string;
+  image: string;
+  video_url:string;
+  fileDocument:string;
 }
 
 const CreateServiceMain = () => {
@@ -32,6 +32,7 @@ const CreateServiceMain = () => {
   const active:any = true;
   const [editorLoaded, setEditorLoaded] = useState<boolean>(false);
   const [dataOne, setDataOne] = useState<string>("");
+  const [dataTwo, setDataTwo] = useState<string>("");
   const [blogs, setBlogs] = useState([]);
   const [blogImg, setBlogImg] = useState<string>("");
   const now = moment();
@@ -48,31 +49,24 @@ const CreateServiceMain = () => {
     setLoading(true);
 
 
-    if (data.images && data.images.length) {
-      for (let i = 0; i < data.images.length; i++) {
-        formData.append("images", data.images[i]);
+    if (data.image && data.image.length) {
+      for (let i = 0; i < data.image.length; i++) {
+        formData.append("image", data.image[i]);
       }
     }
 
-    if (data.cover && data.cover.length) {
-      for (let i = 0; i < data.cover.length; i++) {
-        formData.append("cover", data.cover[i]);
-      }
-    }
-    if (data.video && data.video.length) {
-      for (let i = 0; i < data.video.length; i++) {
-        formData.append("video", data.video[i]);
-      }
-    }
+  
 
     formData.append("title", data.title);
-    formData.append("category_id", data.category_id);
-    formData.append("description", dataOne);
+    formData.append("video_url", data.video_url);
+    formData.append("course_id", data.course_id); 
+    formData.append("body", dataOne);
+    formData.append("contentplan", dataTwo);
     formData.append("price", data.price);
-    formData.append("is_active", active);
+    formData.append("index", '1');
 
     axios
-      .post(`${apiUrl}/products/`, formData, {
+      .post(`${apiUrl}/lessons/`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           "Content-Type": "multipart/form-data",
@@ -80,7 +74,7 @@ const CreateServiceMain = () => {
       })
       .then((res) => {
         switch (res.data.message) {
-          case "Product was created succesfully!":
+          case "Lesson was created succesfully!":
             toast.success(`Mahsulot yaratildi!🎉`, {
               position: "top-left",
             });
@@ -116,7 +110,7 @@ const CreateServiceMain = () => {
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}/categories/`)
+      .get(`${apiUrl}/courses/main/`)
       .then((res) => {
         setBlogs(res.data.data);
         // setotalPages(res.data.totalPages);
@@ -129,9 +123,9 @@ const CreateServiceMain = () => {
     setEditorLoaded(true);
   }, []);
 
-  if (loading) {
-    return <Preloader />;
-  }
+  // if (loading) {
+  //   return <Preloader />;
+  // }
 
   return (
     <>
@@ -201,8 +195,31 @@ const CreateServiceMain = () => {
                       }}
                       editorLoaded={editorLoaded}
                     />
-                    {errors.description && (
-                      <span>{errors.description.message}</span>
+                    {errors.body && (
+                      <span>{errors.body.message}</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-8 md:col-span-6 col-span-12">
+              <div className="cashier-select-field mb-5">
+                <h5 className="text-[15px] text-heading font-semibold mb-3">
+                  {" "}
+                  Mundarija
+                </h5>
+                <div className="cashier-input-field-style">
+                  <div className="single-input-field w-full">
+                    <CKeditor
+                      // name="text_uz"
+                      onChange={(data: string) => {
+                        setDataTwo(data);
+                      }}
+                      editorLoaded={editorLoaded}
+                    />
+                    {errors.contentplan && (
+                      <span>{errors.contentplan.message}</span>
                     )}
                   </div>
                 </div>
@@ -213,14 +230,14 @@ const CreateServiceMain = () => {
               <div className="cashier-select-field mb-5">
                 <h5 className="text-[15px] text-heading font-semibold mb-3">
                   {" "}
-                  Asosiy rasm
+                  Rasm
                 </h5>
                 <div className="cashier-input-field-style">
                   <div className="single-input-field w-full">
                     <input
                       type="file"
                       placeholder="Add Product Rating"
-                      {...register("cover")}
+                      {...register("image")}
                       style={{ padding: 0 }}
                       required
                     />
@@ -230,20 +247,20 @@ const CreateServiceMain = () => {
             </div>
 
 
+
             <div className="lg:col-span-4 md:col-span-6 col-span-12">
               <div className="cashier-select-field mb-5">
                 <h5 className="text-[15px] text-heading font-semibold mb-3">
                   {" "}
-                  Rasmlar yuklash
+                  Video url
                 </h5>
                 <div className="cashier-input-field-style">
                   <div className="single-input-field w-full">
                     <input
-                      type="file"
+                      type="text"
                       placeholder="Add Product Rating"
-                      {...register("images")}
+                      {...register("video_url")}
                       style={{ padding: 0 }}
-                      multiple
                       required
                     />
                   </div>
@@ -251,19 +268,18 @@ const CreateServiceMain = () => {
               </div>
             </div>
 
-
             <div className="lg:col-span-4 md:col-span-6 col-span-12">
               <div className="cashier-select-field mb-5">
                 <h5 className="text-[15px] text-heading font-semibold mb-3">
                   {" "}
-                  Video yuklash
+                  File yuklash
                 </h5>
                 <div className="cashier-input-field-style">
                   <div className="single-input-field w-full">
                     <input
                       type="file"
                       placeholder="Add Product Rating"
-                      {...register("video")}
+                      {...register("fileDocument")}
                       style={{ padding: 0 }}
                     />
                   </div>
@@ -279,15 +295,15 @@ const CreateServiceMain = () => {
                 <div className="cashier-input-field-style">
                   <div className="single-input-field w-full">
                     <select
-                      {...register("category_id", {
+                      {...register("course_id", {
                         required: "Hudud (Uzbek) is required",
                       })}
-                      name="category_id">
+                      name="course_id">
                       <option selected value="Tanlang">
                         Tanlang
                       </option>
                       {blogs.map((item: any, index: any) => (
-                        <option key={index} value={item.id}>
+                        <option key={index} value={item.course_id}>
                           {item.name}
                         </option>
                       ))}

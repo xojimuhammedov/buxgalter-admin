@@ -34,7 +34,7 @@ const ProductsList = () => {
   const handleDeleteProduct = (id: string) => {
     if (user?.phone_number) {
       axios
-        .delete(`${apiUrl}/products/${id}`, header)
+        .delete(`${apiUrl}/lessons/${id}`, header)
         .then((res) => {
           if (res.data.success) {
             const remainingProduct = products.filter((item) => item.id !== id);
@@ -73,7 +73,7 @@ const ProductsList = () => {
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}/products`)
+      .get(`${apiUrl}/lessons`)
       .then((res) => {
         setProducts(res.data.data);
         setotalPages(res.data.totalPages);
@@ -105,26 +105,9 @@ const ProductsList = () => {
   const selectHandler = () => {};
   return (
     <>
-      <div className="cashier-content-area ml-[300px] mt-[30px] px-7">
+      <div className="cashier-content-area ml-[300px] mt-[100px] px-7">
         <div className="cashier-salereturns-area bg-white p-7 custom-shadow rounded-lg pt-5 mb-5">
-          <div className="cashier-table-header-search-area">
-            <div className="grid grid-cols-12 gap-x-5 mb-7 pb-0.5">
-              <div className="md:col-span-6 col-span-12">
-                <div className="cashier-table-header-search relative maxSm:mb-4">
-                  <input
-                    type="text"
-                    placeholder="Search List"
-                    value={searchValue}
-                    onChange={handleInputChange}
-                  />
-                  <span>
-                    <i className="fa-light fa-magnifying-glass"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
+  
           {products.length ? (
             <>
               <div className="cashier-salereturns-table-area">
@@ -132,12 +115,9 @@ const ProductsList = () => {
                   <div className="cashier-salereturns-table-inner-wrapperD border border-solid border-grayBorder border-b-0 mb-7">
                     <div className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12">
                       <div className="cashier-salereturns-table-dateF max-w-fit	ml-5">
-                        <h5>Mahsulot nomi</h5>
+                        <h5>Dars nomi</h5>
                       </div>
 
-                      <div className="cashier-salereturns-table-dateF max-w-fit	ml-5">
-                        <h5>Bo`lim nomi</h5>
-                      </div>
 
                       <div className="cashier-salereturns-table-actionF">
                         <h5>Actions</h5>
@@ -151,10 +131,6 @@ const ProductsList = () => {
                           className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12">
                           <div className="cashier-salereturns-table-dateF ml-5">
                             <span> {item?.title} </span>
-                          </div>
-
-                          <div className="cashier-salereturns-table-dateF ml-5">
-                            <span> {item?.category?.name} </span>
                           </div>
 
                           <div className="cashier-salereturns-table-actionF">

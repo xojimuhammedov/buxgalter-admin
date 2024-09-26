@@ -127,30 +127,6 @@ const BlogList = () => {
                     ))}
                   </div>
                 </div>
-                {/* <div className="cashier-pagination-area">
-                  <div className="cashier-pagination-wrapper">
-                    <div className="grid grid-cols-12">
-                      <div className="single-input-field w-full">
-                         <NiceSelectThree
-                          options={pageLimitArray}
-                          defaultCurrent={0}
-                          onChange={selectHandler}
-                          name=""
-                          setLimit={setLimit}
-                          className=""
-                        />
-                      </div>
-
-                      <div className="lg:col-span-9 md:col-span-6 col-span-12">
-                        <PaginationComponent
-                          totalPages={totalPages}
-                          currentPage={currentPage}
-                          setPage={setPage}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
               </div>
             </>
           ) : (
