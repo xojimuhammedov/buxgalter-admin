@@ -1,3 +1,3 @@
-const apiUrl = "http://jimi.sigmaservis.uz/api"
+const apiUrl = "https://api.buxgalterpro.uz/api"
 
 export default apiUrl;

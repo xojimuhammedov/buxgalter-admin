@@ -27,7 +27,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (token || loggedIn) {
       axios
-        .get(`${"http://jimi.sigmaservis.uz/api"}/users/me`, header)
+        .get(`${"https://api.buxgalterpro.uz/api"}/users/me`, header)
         .then((res) => {
           if (res.data.data) {
             const userinfo = res.data.data;
