@@ -98,7 +98,7 @@ const BlogList = () => {
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}/cars`)
+      .get(`${apiUrl}/courses/user`)
       .then((res) => { 
         setBlogs(res.data.data);
         setotalPages(res.data.totalPages);

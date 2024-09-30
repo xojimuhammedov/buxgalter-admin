@@ -76,4 +76,20 @@ export const menuData: MenuItem[] = [
       },
     ],
   },
+
+  {
+    id: 9,
+    text: "Kurs biriktirish",
+    icon: BlogIcon,
+    submenu: [
+      {
+        text: "Kurs biriktirish",
+        link: "/tours",
+      },
+      {
+        text: "Kurs biriktirish yaratish",
+        link: "/create-tours",
+      },
+    ],
+  },
 ];
