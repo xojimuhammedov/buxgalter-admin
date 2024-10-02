@@ -21,7 +21,7 @@ interface FormData {
   course_id: string;
   image: string;
   video_url:string;
-  fileDocument:string;
+  file:string;
 }
 
 const CreateServiceMain = () => {
@@ -52,6 +52,12 @@ const CreateServiceMain = () => {
     if (data.image && data.image.length) {
       for (let i = 0; i < data.image.length; i++) {
         formData.append("image", data.image[i]);
+      }
+    }
+
+    if (data.file && data.file.length) {
+      for (let i = 0; i < data.file.length; i++) {
+        formData.append("file", data.file[i]);
       }
     }
 
@@ -279,7 +285,7 @@ const CreateServiceMain = () => {
                     <input
                       type="file"
                       placeholder="Add Product Rating"
-                      {...register("fileDocument")}
+                      {...register("file")}
                       style={{ padding: 0 }}
                     />
                   </div>

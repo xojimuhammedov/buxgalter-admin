@@ -92,12 +92,6 @@ const Sidebar = () => {
                 </li>
               </ul>
             </div>
-
-            <div className="cashier-logo text-center h-[200px] w-full flex flex-col justify-center items-center bg-[#F6F8FC] rounded-lg mt-[10px]">
-              <Link href="" className="inline-block">
-                <Image src={logo2} alt="logo not found" />
-              </Link>
-            </div>
           </div>
         </div>
         <div
