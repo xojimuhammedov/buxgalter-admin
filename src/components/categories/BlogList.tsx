@@ -71,12 +71,12 @@ const BlogList = () => {
               <div className="cashier-salereturns-table-area">
                 <div className="cashier-salereturns-table-innerD">
                   <div className="cashier-salereturns-table-inner-wrapperD border border-solid border-grayBorder border-b-0 mb-7">
-                    <div className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12">
-                      <div className="cashier-salereturns-table-dateF ml-5">
+                    <div className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-15">
+                      <div style={{ width:"500px"}}  className="cashier-salereturns-table-dateF ml-5">
                         <h5>Kurs nomi (Uzbek)</h5>
                       </div>
 
-                      <div className="cashier-salereturns-table-actionF">
+                      <div style={{ width:"380px"}}  className="cashier-salereturns-table-actionF">
                         <h5>Actions</h5>
                       </div>
                     </div>
@@ -84,11 +84,12 @@ const BlogList = () => {
                     {blogs.map((item) => (
                       <div
                         key={item.course_id}
-                        className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12">
-                        <div className="cashier-salereturns-table-dateF ml-5">
+                        style={{margin:"15px 0",}}
+                        className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-15">
+                        <div style={{ width:"500px"}}  className="cashier-salereturns-table-dateF ml-5">
                           <span className="capitalize"> {item.name} </span>
                         </div>
-                        <div className="cashier-salereturns-table-actionF">
+                        <div style={{ width:"380px"}}  className="cashier-salereturns-table-actionF">
                           <div className="dropdown">
                             <button
                               onClick={() => handleOpen(item.course_id)}
