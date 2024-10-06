@@ -114,12 +114,12 @@ const ProductsList = () => {
                 <div className="cashier-salereturns-table-innerD">
                   <div className="cashier-salereturns-table-inner-wrapperD border border-solid border-grayBorder border-b-0 mb-7">
                     <div className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12">
-                      <div className="cashier-salereturns-table-dateF max-w-fit	ml-5">
+                      <div style={{width:"500px"}} className="cashier-salereturns-table-dateF	ml-5">
                         <h5>Dars nomi</h5>
                       </div>
 
 
-                      <div className="cashier-salereturns-table-actionF">
+                      <div style={{width:"380px"}} className="cashier-salereturns-table-actionF">
                         <h5>Actions</h5>
                       </div>
                     </div>
@@ -129,11 +129,11 @@ const ProductsList = () => {
                         <div
                           key={item.id}
                           className="cashier-salereturns-table-list flex border-b border-solid border-grayBorder h-12">
-                          <div className="cashier-salereturns-table-dateF ml-5">
+                          <div style={{width:"500px"}} className="cashier-salereturns-table-dateF ml-5">
                             <span> {item?.title} </span>
                           </div>
 
-                          <div className="cashier-salereturns-table-actionF">
+                          <div style={{width:"380px"}} className="cashier-salereturns-table-actionF">
                             <div className="dropdown">
                               <button
                                 onClick={() => handleOpen(item.id)}
@@ -148,7 +148,7 @@ const ProductsList = () => {
                                     item.id === match && open ? "block" : "none"
                                   }`,
                                 }}>
-                                <button className="dropdown-menu-item">
+                                {/* <button className="dropdown-menu-item">
                                   <Image
                                     src={updateIcon}
                                     alt="icon not found"
@@ -158,7 +158,7 @@ const ProductsList = () => {
                                     href={`/products/products-update/${item.id}`}>
                                     Edit
                                   </Link>
-                                </button>
+                                </button> */}
                                 <button
                                   onClick={() => handleDeleteProduct(item.id)}
                                   className="dropdown-menu-item">

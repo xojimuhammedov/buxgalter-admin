@@ -17,6 +17,7 @@ interface FormData {
   description: string;
   images: string;
   file: string;
+  price: string;
 }
 
 const CreateServiceMain = () => {
@@ -46,6 +47,7 @@ const CreateServiceMain = () => {
     }
 
     formData.append("name", data.name);
+    formData.append("price", data.price);
     formData.append("description", dataOne);
 
     axios
@@ -125,6 +127,27 @@ const CreateServiceMain = () => {
                       })}
                     />
                     {errors.name && <span>{errors.name.message}</span>}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-4 md:col-span-6 col-span-12">
+              <div className="cashier-select-field mb-5">
+                <h5 className="text-[15px] text-heading font-semibold mb-3">
+                  {" "}
+                  Kurs narxi
+                </h5>
+                <div className="cashier-input-field-style">
+                  <div className="single-input-field w-full">
+                    <input
+                      type="text"
+                      placeholder="Kurs narxi"
+                      {...register("price", {
+                        required: "Price is required",
+                      })}
+                    />
+                    {errors.price && <span>{errors.price.message}</span>}
                   </div>
                 </div>
               </div>

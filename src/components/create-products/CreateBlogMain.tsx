@@ -17,7 +17,6 @@ interface FormData {
   title: string;
   body: string;
   contentplan: string;
-  price: string;
   course_id: string;
   image: string;
   video_url:string;
@@ -68,7 +67,6 @@ const CreateServiceMain = () => {
     formData.append("course_id", data.course_id); 
     formData.append("body", dataOne);
     formData.append("contentplan", dataTwo);
-    formData.append("price", data.price);
     formData.append("index", '1');
 
     axios
@@ -159,28 +157,6 @@ const CreateServiceMain = () => {
                       })}
                     />
                     {errors.title && <span>{errors.title.message}</span>}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Text (Uzbek) */}
-            <div className="lg:col-span-4 md:col-span-6 col-span-12">
-              <div className="cashier-select-field mb-5">
-                <h5 className="text-[15px] text-heading font-semibold mb-3">
-                  {" "}
-                  Narxi
-                </h5>
-                <div className="cashier-input-field-style">
-                  <div className="single-input-field w-full">
-                    <input
-                      type="text"
-                      placeholder="Narxi"
-                      {...register("price", {
-                        required: "Narxi is required",
-                      })}
-                    />
-                    {errors.price && <span>{errors.price.message}</span>}
                   </div>
                 </div>
               </div>

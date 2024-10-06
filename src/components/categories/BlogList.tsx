@@ -106,13 +106,13 @@ const BlogList = () => {
                                     : "none"
                                 }`,
                               }}>
-                              <button className="dropdown-menu-item">
+                              {/* <button className="dropdown-menu-item">
                                 <Image src={updateIcon} alt="icon not found" />
                                 <Link
                                   href={`categories/categories-update/${item.course_id}`}>
                                   Edit
                                 </Link>
-                              </button>
+                              </button> */}
                               <button
                                 onClick={() =>
                                   handleDeleteProduct(item.course_id)
